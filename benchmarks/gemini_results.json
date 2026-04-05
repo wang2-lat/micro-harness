@@ -1,0 +1,250 @@
+{
+  "baseline": [
+    {
+      "task": "list-files",
+      "success": false,
+      "turns": 4,
+      "tokens": 437,
+      "input_tokens": 417,
+      "output_tokens": 20,
+      "elapsed": 7.4,
+      "tools": 1
+    },
+    {
+      "task": "read-arch",
+      "success": true,
+      "turns": 5,
+      "tokens": 2843,
+      "input_tokens": 2816,
+      "output_tokens": 27,
+      "elapsed": 8.3,
+      "tools": 1
+    },
+    {
+      "task": "check-version",
+      "success": true,
+      "turns": 2,
+      "tokens": 912,
+      "input_tokens": 879,
+      "output_tokens": 33,
+      "elapsed": 1.7,
+      "tools": 1
+    },
+    {
+      "task": "create-run",
+      "success": false,
+      "turns": 5,
+      "tokens": 956,
+      "input_tokens": 906,
+      "output_tokens": 50,
+      "elapsed": 8.3,
+      "tools": 2
+    },
+    {
+      "task": "count-lines",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "find-funcs",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    }
+  ],
+  "+bootstrap": [
+    {
+      "task": "list-files",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    },
+    {
+      "task": "read-arch",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    },
+    {
+      "task": "check-version",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 7.0,
+      "tools": 0
+    },
+    {
+      "task": "create-run",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    },
+    {
+      "task": "count-lines",
+      "success": false,
+      "turns": 10,
+      "tokens": 42499,
+      "input_tokens": 42382,
+      "output_tokens": 117,
+      "elapsed": 19.3,
+      "tools": 5
+    },
+    {
+      "task": "find-funcs",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.7,
+      "tools": 0
+    }
+  ],
+  "+index": [
+    {
+      "task": "list-files",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "read-arch",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "check-version",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "create-run",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "count-lines",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "find-funcs",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    }
+  ],
+  "+all": [
+    {
+      "task": "list-files",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.7,
+      "tools": 0
+    },
+    {
+      "task": "read-arch",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    },
+    {
+      "task": "check-version",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    },
+    {
+      "task": "create-run",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "count-lines",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.4,
+      "tools": 0
+    },
+    {
+      "task": "find-funcs",
+      "success": false,
+      "turns": 3,
+      "tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "elapsed": 6.5,
+      "tools": 0
+    }
+  ]
+}
