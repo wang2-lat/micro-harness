@@ -1,0 +1,58 @@
+{
+  "easy": [
+    {
+      "id": "list-files",
+      "prompt": "List the Python files in src/ and report how many there are.",
+      "validator": "contains_both",
+      "expected": ["harness.py", "src/"]
+    },
+    {
+      "id": "read-readme",
+      "prompt": "Read ARCHITECTURE.md and tell me how many techniques it describes.",
+      "validator": "contains_any",
+      "expected": ["8 techniques", "8 Techniques", "eight"]
+    },
+    {
+      "id": "check-version",
+      "prompt": "What Python version is installed on this system?",
+      "validator": "regex",
+      "expected": "Python 3\\.\\d+"
+    }
+  ],
+  "medium": [
+    {
+      "id": "create-hello",
+      "prompt": "Create a file at /tmp/mh-test-hello.py that prints 'Hello from micro-harness'. Then run it and report the output.",
+      "validator": "contains_all",
+      "expected": ["Hello from micro-harness"]
+    },
+    {
+      "id": "count-lines",
+      "prompt": "How many lines of code are in src/harness.py? Give the number.",
+      "validator": "regex",
+      "expected": "\\b(3\\d{2}|4\\d{2})\\b"
+    },
+    {
+      "id": "find-pattern",
+      "prompt": "Search src/harness.py for all functions that start with 'tool_'. List their names.",
+      "validator": "contains_all",
+      "expected": ["tool_read", "tool_write", "tool_edit", "tool_bash", "tool_grep"]
+    }
+  ],
+  "hard": [
+    {
+      "id": "refactor-constant",
+      "prompt": "In src/harness.py, change the MAX_TURNS default from 30 to 25. Then verify the change.",
+      "validator": "file_contains",
+      "expected_path": "src/harness.py",
+      "expected_text": "max_turns: int = 25"
+    },
+    {
+      "id": "add-tool",
+      "prompt": "Add a new tool called 'ls' that runs 'ls -la' in the current directory. Add it to TOOL_DISPATCH and TOOLS_SCHEMA. Do not run it, just add the code.",
+      "validator": "file_contains",
+      "expected_path": "src/harness.py",
+      "expected_text": "\"name\": \"ls\""
+    }
+  ]
+}
