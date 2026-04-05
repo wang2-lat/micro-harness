@@ -1,0 +1,250 @@
+{
+  "baseline": [
+    {
+      "task": "list-files",
+      "success": true,
+      "turns": 5,
+      "tokens": 5855,
+      "input": 5456,
+      "output": 399,
+      "time": 20.0,
+      "tools": 4
+    },
+    {
+      "task": "read-arch",
+      "success": true,
+      "turns": 2,
+      "tokens": 3376,
+      "input": 3156,
+      "output": 220,
+      "time": 11.1,
+      "tools": 1
+    },
+    {
+      "task": "check-version",
+      "success": true,
+      "turns": 2,
+      "tokens": 1576,
+      "input": 1505,
+      "output": 71,
+      "time": 5.5,
+      "tools": 1
+    },
+    {
+      "task": "create-run",
+      "success": true,
+      "turns": 4,
+      "tokens": 3836,
+      "input": 3514,
+      "output": 322,
+      "time": 16.0,
+      "tools": 3
+    },
+    {
+      "task": "count-lines",
+      "success": true,
+      "turns": 4,
+      "tokens": 13243,
+      "input": 12910,
+      "output": 333,
+      "time": 21.9,
+      "tools": 3
+    },
+    {
+      "task": "find-funcs",
+      "success": true,
+      "turns": 6,
+      "tokens": 27970,
+      "input": 27424,
+      "output": 546,
+      "time": 32.7,
+      "tools": 5
+    }
+  ],
+  "+bootstrap": [
+    {
+      "task": "list-files",
+      "success": true,
+      "turns": 4,
+      "tokens": 4662,
+      "input": 4317,
+      "output": 345,
+      "time": 19.3,
+      "tools": 3
+    },
+    {
+      "task": "read-arch",
+      "success": true,
+      "turns": 2,
+      "tokens": 3554,
+      "input": 3330,
+      "output": 224,
+      "time": 12.2,
+      "tools": 1
+    },
+    {
+      "task": "check-version",
+      "success": true,
+      "turns": 2,
+      "tokens": 1750,
+      "input": 1679,
+      "output": 71,
+      "time": 5.6,
+      "tools": 1
+    },
+    {
+      "task": "create-run",
+      "success": true,
+      "turns": 4,
+      "tokens": 4260,
+      "input": 3915,
+      "output": 345,
+      "time": 17.3,
+      "tools": 3
+    },
+    {
+      "task": "count-lines",
+      "success": true,
+      "turns": 6,
+      "tokens": 34683,
+      "input": 34080,
+      "output": 603,
+      "time": 38.4,
+      "tools": 5
+    },
+    {
+      "task": "find-funcs",
+      "success": true,
+      "turns": 7,
+      "tokens": 36599,
+      "input": 35899,
+      "output": 700,
+      "time": 42.9,
+      "tools": 6
+    }
+  ],
+  "+index": [
+    {
+      "task": "list-files",
+      "success": true,
+      "turns": 4,
+      "tokens": 4239,
+      "input": 3916,
+      "output": 323,
+      "time": 16.5,
+      "tools": 3
+    },
+    {
+      "task": "read-arch",
+      "success": true,
+      "turns": 2,
+      "tokens": 3545,
+      "input": 3326,
+      "output": 219,
+      "time": 11.2,
+      "tools": 1
+    },
+    {
+      "task": "check-version",
+      "success": true,
+      "turns": 2,
+      "tokens": 1746,
+      "input": 1675,
+      "output": 71,
+      "time": 6.3,
+      "tools": 1
+    },
+    {
+      "task": "create-run",
+      "success": true,
+      "turns": 4,
+      "tokens": 4169,
+      "input": 3853,
+      "output": 316,
+      "time": 16.6,
+      "tools": 3
+    },
+    {
+      "task": "count-lines",
+      "success": true,
+      "turns": 6,
+      "tokens": 34350,
+      "input": 33906,
+      "output": 444,
+      "time": 33.1,
+      "tools": 5
+    },
+    {
+      "task": "find-funcs",
+      "success": true,
+      "turns": 5,
+      "tokens": 20776,
+      "input": 20206,
+      "output": 570,
+      "time": 33.2,
+      "tools": 4
+    }
+  ],
+  "+all": [
+    {
+      "task": "list-files",
+      "success": true,
+      "turns": 5,
+      "tokens": 6294,
+      "input": 5890,
+      "output": 404,
+      "time": 21.4,
+      "tools": 4
+    },
+    {
+      "task": "read-arch",
+      "success": true,
+      "turns": 2,
+      "tokens": 3736,
+      "input": 3500,
+      "output": 236,
+      "time": 11.8,
+      "tools": 1
+    },
+    {
+      "task": "check-version",
+      "success": true,
+      "turns": 2,
+      "tokens": 1922,
+      "input": 1850,
+      "output": 72,
+      "time": 5.9,
+      "tools": 1
+    },
+    {
+      "task": "create-run",
+      "success": true,
+      "turns": 4,
+      "tokens": 4591,
+      "input": 4234,
+      "output": 357,
+      "time": 16.7,
+      "tools": 3
+    },
+    {
+      "task": "count-lines",
+      "success": true,
+      "turns": 4,
+      "tokens": 13916,
+      "input": 13562,
+      "output": 354,
+      "time": 21.8,
+      "tools": 3
+    },
+    {
+      "task": "find-funcs",
+      "success": true,
+      "turns": 6,
+      "tokens": 29024,
+      "input": 28443,
+      "output": 581,
+      "time": 36.5,
+      "tools": 5
+    }
+  ]
+}
