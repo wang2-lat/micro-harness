@@ -1,0 +1,56 @@
+[
+  {
+    "task": "real-add-type-hints",
+    "category": "refactor",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 151033,
+    "time": 114.8
+  },
+  {
+    "task": "real-add-tests",
+    "category": "test",
+    "model": "DeepSeek-V3.2",
+    "success": true,
+    "turns": 14,
+    "tokens": 107121,
+    "time": 195.0
+  },
+  {
+    "task": "real-keep-last-n",
+    "category": "feature",
+    "model": "DeepSeek-V3.2",
+    "success": true,
+    "turns": 12,
+    "tokens": 81706,
+    "time": 124.1
+  },
+  {
+    "task": "real-fix-error-swallow",
+    "category": "bugfix",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 57884,
+    "time": 113.9
+  },
+  {
+    "task": "real-api-example",
+    "category": "feature",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 123539,
+    "time": 103.0
+  },
+  {
+    "task": "real-optimize-read",
+    "category": "refactor",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 74711,
+    "time": 163.3
+  }
+]

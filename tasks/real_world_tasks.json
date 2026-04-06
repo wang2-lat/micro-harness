@@ -1,0 +1,38 @@
+[
+  {
+    "id": "real-add-type-hints",
+    "prompt": "Add type hints to all functions in src/harness.py that don't have them. Focus on tool_read, tool_write, tool_edit, tool_bash, tool_grep return types and parameter types.",
+    "source": "inspired by alibaizhanov/mengram#3",
+    "category": "refactor"
+  },
+  {
+    "id": "real-add-tests",
+    "prompt": "The file benchmarks/test_offline.py has 10 tests. Add 5 more tests: test that tool_read returns line numbers, test tool_write creates parent directories, test tool_bash timeout works, test tool_edit with unicode content, test that empty file read returns '(empty file)'.",
+    "source": "inspired by alibaizhanov/mengram#2 - add unit tests",
+    "category": "test"
+  },
+  {
+    "id": "real-keep-last-n",
+    "prompt": "Add a --max-turns flag to the CLI entry point at the bottom of src/harness.py. When the user runs 'python harness.py --max-turns 10 \"task\"', it should use 10 as max_turns. Use argparse.",
+    "source": "inspired by sadhgurutech/mailtrim - add CLI flag",
+    "category": "feature"
+  },
+  {
+    "id": "real-fix-error-swallow",
+    "prompt": "In src/harness.py, when tool_bash runs a command that returns exit code != 0, the error output is included but not flagged. Add a check: if exit code is not 0, prefix the result with 'COMMAND FAILED (exit=N): ' so the agent knows the command failed.",
+    "source": "real pattern: commands fail silently",
+    "category": "bugfix"
+  },
+  {
+    "id": "real-api-example",
+    "prompt": "Create examples/quickstart.py that shows how to use MicroHarness in 10 lines of code: import it, configure it, run a simple task, print the result. Include comments explaining each step.",
+    "source": "inspired by Jason-prd/ai-workflow - add usage examples",
+    "category": "feature"
+  },
+  {
+    "id": "real-optimize-read",
+    "prompt": "In src/harness.py, tool_read loads the entire file into memory even when only reading 10 lines. Fix it to use itertools.islice or similar to only read the lines needed, reducing memory usage for large files.",
+    "source": "real performance issue",
+    "category": "refactor"
+  }
+]

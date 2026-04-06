@@ -1,0 +1,56 @@
+[
+  {
+    "task": "real-add-type-hints",
+    "category": "refactor",
+    "model": "claude-sonnet-4-6",
+    "success": false,
+    "turns": 15,
+    "tokens": 20718,
+    "time": 370.6
+  },
+  {
+    "task": "real-add-tests",
+    "category": "test",
+    "model": "GLM-4.7",
+    "success": true,
+    "turns": 1,
+    "tokens": 2764,
+    "time": 31.9
+  },
+  {
+    "task": "real-keep-last-n",
+    "category": "feature",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 90301,
+    "time": 98.7
+  },
+  {
+    "task": "real-fix-error-swallow",
+    "category": "bugfix",
+    "model": "claude-sonnet-4-6",
+    "success": true,
+    "turns": 8,
+    "tokens": 13791,
+    "time": 41.0
+  },
+  {
+    "task": "real-api-example",
+    "category": "analysis",
+    "model": "DeepSeek-V3.2",
+    "success": false,
+    "turns": 15,
+    "tokens": 88022,
+    "time": 83.1
+  },
+  {
+    "task": "real-optimize-read",
+    "category": "refactor",
+    "model": "claude-sonnet-4-6",
+    "success": true,
+    "turns": 13,
+    "tokens": 17971,
+    "time": 69.2
+  }
+]

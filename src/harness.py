@@ -11,6 +11,7 @@ import subprocess
 import time
 import json
 import re
+import itertools
 from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Callable
@@ -108,12 +109,21 @@ def tool_read(path: str, start_line: int = 1, limit: int = 500) -> str:
     if not p.exists():
         return f"ERROR: File not found: {path}"
     try:
-        lines = p.read_text().splitlines()
+        with p.open(encoding="utf-8", errors="replace") as fh:
+            skip = start_line - 1
+            # Discard lines before start_line without storing them
+            selected = list(itertools.islice(
+                (line.rstrip("\n") for line in itertools.islice(fh, skip, skip + limit)),
+                limit,
+            ))
     except Exception as e:
         return f"ERROR: {e}"
-    end = min(start_line - 1 + limit, len(lines))
-    numbered = [f"{i+1:5}→{lines[i]}" for i in range(start_line - 1, end)]
-    return "\n".join(numbered) if numbered else "(empty file)"
+    if not selected:
+        return "(empty file)"
+    numbered = [
+        f"{start_line + i:5}→{line}" for i, line in enumerate(selected)
+    ]
+    return "\n".join(numbered)
 
 
 def tool_write(path: str, content: str) -> str:
