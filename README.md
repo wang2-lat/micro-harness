@@ -6,6 +6,24 @@ English | [简体中文](README.zh-CN.md)
 
 After the Claude Code source leak (March 31, 2026), we learned that **the harness around an LLM matters more than the model**. Stanford showed a 6× gap on the same model with different harnesses. But production harnesses are 512K+ lines. This one is ~400.
 
+## 7-Model Battle (the headline result)
+
+We ran the same 2 hardest coding tasks through 7 frontier models on the same harness. No prompt tuning per model — identical system prompt, identical tools.
+
+| Model | refactor | bugfix | Score | Tokens |
+|-------|:--------:|:------:|:-----:|-------:|
+| **GPT-5.4** | **✓ 7 turns** | **✓ 6 turns** | **2/2** | 58K |
+| **Claude Sonnet 4.6** | **✓ 10 turns** | **✓ 14 turns** | **2/2** | 51K |
+| **GPT-5.4-mini** | **✓ 10 turns** | **✓ 8 turns** | **2/2** | 96K |
+| Claude Opus 4.6 | ✗ | ✓ 12 turns | 1/2 | 75K |
+| GPT-5.3-codex | ✗ | ✓ 7 turns | 1/2 | 91K |
+| Gemini-3-Flash | ✗ | ✗ | 0/2 | 143K |
+| Gemini-3-Pro | ✗ | ✗ | 0/2 | 71K |
+
+**GPT-5.4 wins on speed** (13 total turns). **Claude Sonnet wins on cost** (51K tokens). **Gemini 3 fails both tasks.** Opus loses to Sonnet — more expensive ≠ better.
+
+These same 2 tasks scored 0/9 on DeepSeek-V3.2. **Model selection has 10× more impact than any harness optimization.**
+
 ## Real Benchmark Results (no BS)
 
 We ran 6 hard coding tasks (refactoring, test generation, feature implementation, debugging, bug hunting, cross-file analysis) on **DeepSeek-V3.2** with natural language prompts — no hand-holding, no step-by-step instructions. Each task was run **3 times** to test reliability.
