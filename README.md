@@ -1,5 +1,7 @@
 # micro-harness 🎯
 
+English | [简体中文](README.zh-CN.md)
+
 **A minimal agent harness you can read in 30 minutes — and the honest story of taking it from 17% to 50% pass rate on hard coding tasks.**
 
 After the Claude Code source leak (March 31, 2026), we learned that **the harness around an LLM matters more than the model**. Stanford showed a 6× gap on the same model with different harnesses. But production harnesses are 512K+ lines. This one is ~400.
@@ -143,6 +145,20 @@ User Task
 │       msgs.append(result)  │
 └────────────────────────────┘
 ```
+
+## What We Tried and Failed (Documented Honestly)
+
+We tried 3 approaches to crack the remaining 3 tasks. All failed.
+
+| Approach | What We Did | Result | Why It Failed |
+|----------|------------|--------|---------------|
+| **Switch model** | Gemini 2.5 Flash | 0/3 | Faster but not smarter. Gave up on bugfix after 3 turns |
+| **Dual-agent** | Planner agent + executor agent | 0/3 | Planner read lots of code but generated vague, non-executable steps |
+| **More turns** | Raised max_turns to 25 | 0/9 | More turns = more flailing, not more progress |
+
+**Real conclusion:** These 3 tasks (abstract refactoring, cross-function bugfix, stable test generation) exceed the capability boundary of DeepSeek-V3.2 and Gemini 2.5 Flash. They likely need Claude Sonnet/Opus-level reasoning, or a fundamentally different harness architecture (code graph + symbolic reasoning).
+
+**50% reliable pass rate is the honest ceiling** for this model + harness combination.
 
 ## What's Next
 
