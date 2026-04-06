@@ -155,8 +155,6 @@ class GeminiHarness:
                                    tool_calls_log, start)
 
             try:
-                from rate_limiter import rate_limit
-                rate_limit()
                 response = self.client.models.generate_content(
                     model=c.model,
                     contents=contents,

@@ -505,8 +505,6 @@ class MicroHarness:
                 )
 
             try:
-                from rate_limiter import rate_limit
-                rate_limit()
                 response = self.client.messages.create(
                     model=c.model,
                     max_tokens=4096,

@@ -92,8 +92,6 @@ class OpenAIHarness:
                                    tool_calls_log, start)
 
             try:
-                from rate_limiter import rate_limit
-                rate_limit()  # Global throttle — prevents 429
                 response = self.client.chat.completions.create(
                     model=c.model,
                     messages=messages,
@@ -113,6 +111,7 @@ class OpenAIHarness:
                 continue
 
             self.consecutive_errors = 0
+            time.sleep(1)  # Rate limit courtesy: 0.5s between calls
             choice = response.choices[0]
             msg = choice.message
 
