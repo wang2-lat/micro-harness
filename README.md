@@ -178,6 +178,24 @@ We tried 3 approaches to crack the remaining 3 tasks. All failed.
 
 **50% reliable pass rate is the honest ceiling** for this model + harness combination.
 
+### The Bottom Line
+
+**A harness is a multiplier. The model is the base. If the base is zero, no multiplier helps.**
+
+```
+DeepSeek + no optimization      → 0/9
+DeepSeek + planning prompt      → 0/3
+DeepSeek + fuzzy edit           → 0/3
+DeepSeek + 25 turns             → 0/3
+DeepSeek + Claude's plan        → 0/3  (16x more expensive)
+DeepSeek + everything combined  → 0/3
+
+Claude Sonnet + zero optimization → ✓  10 turns, 23K tokens
+GPT-5.4 + zero optimization      → ✓  7 turns, 27K tokens
+```
+
+24 attempts across 6 prompt/architecture variants. All failed on DeepSeek. Both Claude and GPT passed first try with no optimization. **Prompt engineering cannot compensate for model capability gaps.**
+
 ## What's Next
 
 The remaining 3/6 failures are real unsolved problems:

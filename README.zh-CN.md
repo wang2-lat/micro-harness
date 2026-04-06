@@ -207,6 +207,24 @@ python3 examples/finfars.py AAPL
 
 **50%可靠通过率是这个模型+harness组合的诚实天花板。**
 
+### 一句话结论
+
+**Harness是乘数，模型是底数。底数是0，乘什么都是0。**
+
+```
+DeepSeek + 无优化prompt        → 0/9
+DeepSeek + planning prompt     → 0/3
+DeepSeek + fuzzy edit          → 0/3
+DeepSeek + 25轮                → 0/3
+DeepSeek + Claude写的计划      → 0/3 (反而贵16倍)
+DeepSeek + 所有优化叠加        → 0/3
+
+Claude Sonnet + 零优化prompt   → ✓  10轮 23K tokens
+GPT-5.4 + 零优化prompt         → ✓  7轮  27K tokens
+```
+
+6种prompt/架构变体，共24次尝试，DeepSeek全部失败。Claude和GPT裸跑一次就过。**提示词工程无法弥补模型能力差距。**
+
 ## 未解决的问题
 
 剩下3/6的失败是真正的开放问题：
