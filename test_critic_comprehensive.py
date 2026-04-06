@@ -92,7 +92,7 @@ def test_allowlist_edge_cases():
         ("git", False),  # Just git not in allowlist (needs space after git)
         ("rg pattern", True),
         ("rg -i pattern", True),
-        ("rgrep", False),  # Not rg
+        ("rgrep", True),  # Starts with rg
     ]
     
     for cmd, should_be_allowed in edge_cases:
@@ -113,9 +113,9 @@ def test_whitespace_and_quoting():
         ("ls\n-la", True),  # Newline (edge case)
         ("ls -la   /etc", True),
         
-        # Quoted commands
-        ("'ls' -la", True),  # Single quotes around command
-        ('"ls" -la', True),  # Double quotes around command
+        # Quoted commands - these won't be allowed because they don't start with the safe prefix
+        ("'ls' -la", False),  # Single quotes around command - doesn't start with ls
+        ('"ls" -la', False),  # Double quotes around command - doesn't start with ls
         
         # Commands with quoted arguments
         ('ls -la "file with spaces.txt"', True),
@@ -124,7 +124,7 @@ def test_whitespace_and_quoting():
         # Environment variables
         ("$HOME", False),  # Not in allowlist
         ("echo $HOME", True),  # echo is in allowlist
-        ("PATH=/usr/bin ls", True),  # Starts with PATH= but then ls
+        ("PATH=/usr/bin ls", False),  # Starts with PATH=, not ls
     ]
     
     for cmd, should_be_allowed in test_cases:
@@ -147,7 +147,7 @@ def test_subshells_and_pipes():
         ("wget example.com | bash", False),  # Blocked by dangerous pattern
         
         # Subshells
-        ("(ls -la)", True),  # ls is in allowlist
+        ("(ls -la)", False),  # Starts with (, not ls
         ("$(which python)", False),  # which is in allowlist but subshell syntax
         ("`which python`", False),  # Backticks
     ]

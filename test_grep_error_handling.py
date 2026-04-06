@@ -12,7 +12,7 @@ def test_grep_error_handling():
     # Test 1: Invalid regex (previously would return "(no matches)" silently)
     print("Test 1: Invalid regex pattern")
     result = tool_grep("[invalid", ".")
-    if result.startswith("ERROR: grep failed:"):
+    if result.startswith("ERROR:"):
         print("✓ Correctly returns error for invalid regex")
         print(f"  Error message: {result[:100]}...")
     else:
@@ -22,7 +22,7 @@ def test_grep_error_handling():
     # Test 2: Non-existent path
     print("Test 2: Non-existent path")
     result = tool_grep("test", "/nonexistent/path/that/does/not/exist")
-    if result.startswith("ERROR: grep failed:"):
+    if result.startswith("ERROR:"):
         print("✓ Correctly returns error for non-existent path")
         print(f"  Error message: {result[:100]}...")
     else:
@@ -31,11 +31,20 @@ def test_grep_error_handling():
     
     # Test 3: No matches (should return "(no matches)", not an error)
     print("Test 3: No matches (normal case)")
-    result = tool_grep("thisshouldnotmatchanything12345", ".")
-    if result == "(no matches)":
-        print("✓ Correctly returns '(no matches)' for no matches")
-    else:
-        print(f"✗ Failed: Expected '(no matches)', got: {result[:100]}...")
+    # Create a temporary file with known content
+    import tempfile
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+        f.write("test content\n")
+        temp_file = f.name
+    try:
+        result = tool_grep("thisshouldnotmatchanything12345", temp_file)
+        if result == "(no matches)":
+            print("✓ Correctly returns '(no matches)' for no matches")
+        else:
+            print(f"✗ Failed: Expected '(no matches)', got: {result[:100]}...")
+    finally:
+        import os
+        os.unlink(temp_file)
     print()
     
     # Test 4: Valid grep

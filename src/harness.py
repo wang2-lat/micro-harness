@@ -168,14 +168,18 @@ def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
         # Check exit code
         if result.returncode == 0:
             # Success with matches
-            out = result.stdout[:4000]
-            return out if out else "(no matches)"
+            out = result.stdout[:4000] if result.stdout else ""
+            # Check if output is empty or contains only whitespace
+            return out if out and not out.isspace() else "(no matches)"
         elif result.returncode == 1:
             # No matches found
             return "(no matches)"
         else:
             # Error from ripgrep (exit code 2 or other)
-            error_msg = result.stderr.strip() if result.stderr else f"ripgrep failed with exit code {result.returncode}"
+            if result.stderr and result.stderr.strip():
+                error_msg = result.stderr.strip()
+            else:
+                error_msg = f"ripgrep failed with exit code {result.returncode}"
             return f"ERROR: {error_msg}"
     except FileNotFoundError:
         return "ERROR: ripgrep (rg) not installed"

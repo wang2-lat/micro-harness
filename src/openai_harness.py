@@ -59,9 +59,11 @@ class OpenAIHarness:
             "2. Use read with start_line+limit (max 30 lines). NEVER read more than 30 lines at once.",
             "3. Before editing, ALWAYS read the exact lines you want to change. Copy old_string exactly from the read output.",
             "4. After writing code, ALWAYS run it immediately to check for errors.",
-            "5. If you need to write a new Python file that imports from this project, start with: import sys; sys.path.insert(0, 'src')",
-            "6. Work fast. Don't read files you don't need. Don't explain your thinking — just act.",
-            "7. When done, say what you did in 2-3 sentences.",
+            "5. If you need to write a new Python file that imports from this project, ALWAYS add these 2 lines at the top: import sys; sys.path.insert(0, '/Users/wangzhaoye/micro-harness/src')",
+            "6. For complex tasks (refactoring, fixing bugs across multiple locations): first grep to understand the scope, then make a numbered plan of edits, then execute each one.",
+            "7. If an edit fails, read the exact target lines again and retry with the corrected old_string.",
+            "8. Work fast. Don't read files you don't need.",
+            "9. When done, say what you did in 2-3 sentences.",
         ]
         if file_index:
             system_parts.append(f"\n=== Project Files ===\n{file_index}")
