@@ -165,9 +165,15 @@ class GeminiHarness:
                     ),
                 )
             except Exception as e:
+                err_str = str(e)
                 self.consecutive_errors += 1
-                self.log(f"[turn {turn}] API error: {e}")
-                time.sleep(2)
+                if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "rate" in err_str.lower():
+                    wait = min(30, 5 * self.consecutive_errors)
+                    self.log(f"[turn {turn}] Rate limited, waiting {wait}s...")
+                    time.sleep(wait)
+                else:
+                    self.log(f"[turn {turn}] API error: {e}")
+                    time.sleep(3)
                 continue
 
             self.consecutive_errors = 0
