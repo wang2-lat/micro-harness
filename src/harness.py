@@ -102,6 +102,8 @@ TOOLS_SCHEMA = [
 
 
 def tool_read(path: str, start_line: int = 1, limit: int = 500) -> str:
+    """Read a file with line numbers.
+    Returns content with line numbers or error message if file not found."""
     p = Path(path).expanduser()
     if not p.exists():
         return f"ERROR: File not found: {path}"
@@ -115,6 +117,8 @@ def tool_read(path: str, start_line: int = 1, limit: int = 500) -> str:
 
 
 def tool_write(path: str, content: str) -> str:
+    """Write content to a file, creating directories if needed.
+    Returns success message with byte count or error message."""
     p = Path(path).expanduser()
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(content)
@@ -122,6 +126,8 @@ def tool_write(path: str, content: str) -> str:
 
 
 def tool_edit(path: str, old_string: str, new_string: str) -> str:
+    """Replace exact text in a file. old_string must match exactly.
+    Returns success message or error if file not found or string not unique."""
     p = Path(path).expanduser()
     if not p.exists():
         return f"ERROR: File not found: {path}"
@@ -136,6 +142,8 @@ def tool_edit(path: str, old_string: str, new_string: str) -> str:
 
 
 def tool_bash(command: str, timeout: int = 30) -> str:
+    """Execute a shell command with timeout.
+    Returns exit code, stdout (last 4000 chars), and stderr (last 1000 chars)."""
     try:
         result = subprocess.run(
             command, shell=True, capture_output=True, text=True,
@@ -149,6 +157,8 @@ def tool_bash(command: str, timeout: int = 30) -> str:
 
 
 def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
+    """Search for pattern in files using ripgrep.
+    Returns matching lines with line numbers or error if rg not installed."""
     cmd = ["rg", "-n", pattern, path]
     if glob:
         cmd.extend(["-g", glob])
@@ -164,14 +174,7 @@ def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
 
 def tool_tree(path: str = ".", max_depth: int = 3) -> str:
     """Show directory structure like the unix 'tree' command in pure Python.
-    
-    Args:
-        path: Directory path to show tree for (default: current directory)
-        max_depth: Maximum depth to traverse (default: 3)
-    
-    Returns:
-        String representation of directory tree
-    """
+    Returns string representation of directory tree up to max_depth."""
     from pathlib import Path
     
     p = Path(path).expanduser()
@@ -382,6 +385,7 @@ class HarnessConfig:
     max_turns: int = 30
     max_tokens_total: int = 500_000
     max_consecutive_errors: int = 3
+    max_tool_output: int = 8000
     use_cache: bool = True
     use_bootstrap: bool = True
     use_file_index: bool = True

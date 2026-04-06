@@ -1,0 +1,44 @@
+[
+  {
+    "task": "multi-file-refactor",
+    "success": false,
+    "turns": 20,
+    "tokens": 108989,
+    "time": 121.6
+  },
+  {
+    "task": "test-generation",
+    "success": false,
+    "turns": 20,
+    "tokens": 149140,
+    "time": 227.1
+  },
+  {
+    "task": "cross-file-analysis",
+    "success": true,
+    "turns": 9,
+    "tokens": 84718,
+    "time": 120.0
+  },
+  {
+    "task": "feature-add",
+    "success": false,
+    "turns": 20,
+    "tokens": 179810,
+    "time": 136.6
+  },
+  {
+    "task": "debug-fix",
+    "success": true,
+    "turns": 19,
+    "tokens": 76200,
+    "time": 142.2
+  },
+  {
+    "task": "bug-hunt",
+    "success": false,
+    "turns": 20,
+    "tokens": 148993,
+    "time": 198.1
+  }
+]

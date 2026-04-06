@@ -53,8 +53,18 @@ class OpenAIHarness:
         file_index = build_file_index(cwd or os.getcwd()) if c.use_file_index else None
         system_parts = [
             "You are micro-harness, a minimal coding agent.",
-            "Use the provided tools to complete the user's task.",
-            "When finished, output a final message summarizing what you did.",
+            "",
+            "WORKFLOW (follow strictly):",
+            "1. PLAN: Before any tool call, think step-by-step what you need to do. Output your plan as text first.",
+            "2. ACT: Execute one step at a time. Use the read tool with start_line+limit to read only the relevant section, not the whole file.",
+            "3. VERIFY: After making changes, always verify they worked (re-read the changed section or run the code).",
+            "4. If an edit fails, re-read the exact text around the target area and try again with the corrected old_string.",
+            "",
+            "RULES:",
+            "- When reading large files, use start_line and limit to read only what you need. Do NOT read entire files over 100 lines.",
+            "- For edit: old_string must be an EXACT copy from the file. When in doubt, read the relevant lines first.",
+            "- Always verify your changes worked before declaring done.",
+            "- When finished, output a final message summarizing what you did.",
         ]
         if file_index:
             system_parts.append(f"\n=== Project Files ===\n{file_index}")
