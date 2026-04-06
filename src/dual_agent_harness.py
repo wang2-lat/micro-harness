@@ -154,7 +154,7 @@ class DualAgentHarness:
                 )
             except Exception as e:
                 self.log_fn(f"[PLANNER] API error: {e}", flush=True)
-                time.sleep(2)
+                time.sleep(5)
                 continue
 
             choice = response.choices[0]

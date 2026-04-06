@@ -111,7 +111,7 @@ class OpenAIHarness:
                 continue
 
             self.consecutive_errors = 0
-            time.sleep(0.5)  # Rate limit courtesy: 0.5s between calls
+            time.sleep(1)  # Rate limit courtesy: 0.5s between calls
             choice = response.choices[0]
             msg = choice.message
 

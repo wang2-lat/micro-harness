@@ -515,7 +515,7 @@ class MicroHarness:
             except Exception as e:
                 self.consecutive_errors += 1
                 self.log(f"[turn {turn}] API error: {e}")
-                time.sleep(2)
+                time.sleep(5)
                 continue
 
             # Track tokens
