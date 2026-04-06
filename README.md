@@ -196,6 +196,27 @@ GPT-5.4 + zero optimization      → ✓  7 turns, 27K tokens
 
 24 attempts across 6 prompt/architecture variants. All failed on DeepSeek. Both Claude and GPT passed first try with no optimization. **Prompt engineering cannot compensate for model capability gaps.**
 
+## Model Router (saves 61% tokens)
+
+`src/router.py` auto-selects the best model based on task type:
+
+```
+$ python3 src/router.py
+"Compare harness.py and openai_harness.py"  → analysis → DeepSeek (cheap)
+"Make truncation configurable"               → refactor → Claude Sonnet (smart)
+"Write tests for critic_check"               → test     → GLM-4.7 (fast)
+"Fix the error handling"                     → bugfix   → Claude Sonnet (smart)
+```
+
+Real-world benchmark (6 GitHub Issue-style tasks):
+
+| | All-DeepSeek | With Router | Change |
+|--|:---:|:---:|:---:|
+| Pass rate | 2/6 (33%) | 3/6 (50%) | **+50%** |
+| Total tokens | 596K | 234K | **-61%** |
+
+The router sent bugfix/refactor to Claude (both passed), tests to GLM (1 turn vs 14), and kept simple tasks on DeepSeek.
+
 ## What's Next
 
 The remaining 3/6 failures are real unsolved problems:

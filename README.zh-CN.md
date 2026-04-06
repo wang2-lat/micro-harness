@@ -225,6 +225,26 @@ GPT-5.4 + 零优化prompt         → ✓  7轮  27K tokens
 
 6种prompt/架构变体，共24次尝试，DeepSeek全部失败。Claude和GPT裸跑一次就过。**提示词工程无法弥补模型能力差距。**
 
+## 模型路由器（省61% token）
+
+`src/router.py` 根据任务类型自动选最优模型：
+
+```
+"比较两个文件的区别"     → analysis → DeepSeek（便宜）
+"让截断长度可配置"       → refactor → Claude Sonnet（聪明）
+"写critic_check的测试"   → test     → GLM-4.7（快）
+"修复错误处理"          → bugfix   → Claude Sonnet（聪明）
+```
+
+真实任务benchmark（6个GitHub Issue级任务）：
+
+| | 全DeepSeek | 路由后 | 变化 |
+|--|:---:|:---:|:---:|
+| 通过率 | 2/6 (33%) | 3/6 (50%) | **+50%** |
+| Token | 596K | 234K | **-61%** |
+
+路由器把bugfix/refactor分给Claude（都通过了），test分给GLM（1轮 vs 14轮），简单任务留给DeepSeek。
+
 ## 未解决的问题
 
 剩下3/6的失败是真正的开放问题：

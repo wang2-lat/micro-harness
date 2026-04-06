@@ -158,6 +158,15 @@ class OpenAIHarness:
                     fn = TOOL_DISPATCH[fn_name]
                     result = fn(**fn_args)
                     result_str = str(result)[:self.config.max_tool_output]
+
+                    # Auto-verify: if we edited a .py file, check syntax
+                    edited_path = fn_args.get("path", "")
+                    if fn_name in ("edit", "write", "line_edit", "insert_lines") and edited_path.endswith(".py") and "ERROR" not in result_str:
+                        from verify_loop import verify_python_syntax
+                        ok, msg = verify_python_syntax(edited_path)
+                        if not ok:
+                            result_str += f"\n⚠️ AUTO-VERIFY FAILED: {msg}\nThe edit broke the file. Fix it or revert."
+
                     self.log(f"  ← {result_str[:150]}")
                     messages.append({
                         "role": "tool", "tool_call_id": tc.id,
