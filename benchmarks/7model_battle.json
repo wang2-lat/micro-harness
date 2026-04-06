@@ -1,0 +1,114 @@
+{
+  "Gemini-3-Flash": [
+    {
+      "task": "refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 50610,
+      "time": 68.3
+    },
+    {
+      "task": "bugfix",
+      "success": false,
+      "turns": 15,
+      "tokens": 92623,
+      "time": 70.9
+    }
+  ],
+  "Gemini-3-Pro": [
+    {
+      "task": "refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 36557,
+      "time": 279.0
+    },
+    {
+      "task": "bugfix",
+      "success": false,
+      "turns": 15,
+      "tokens": 34380,
+      "time": 1655.8
+    }
+  ],
+  "Claude-Sonnet": [
+    {
+      "task": "refactor",
+      "success": true,
+      "turns": 10,
+      "tokens": 23344,
+      "time": 75.6
+    },
+    {
+      "task": "bugfix",
+      "success": true,
+      "turns": 14,
+      "tokens": 27227,
+      "time": 413.9
+    }
+  ],
+  "Claude-Opus": [
+    {
+      "task": "refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 32409,
+      "time": 89.0
+    },
+    {
+      "task": "bugfix",
+      "success": true,
+      "turns": 12,
+      "tokens": 42922,
+      "time": 78.5
+    }
+  ],
+  "GPT-5.4": [
+    {
+      "task": "refactor",
+      "success": true,
+      "turns": 7,
+      "tokens": 27302,
+      "time": 55.9
+    },
+    {
+      "task": "bugfix",
+      "success": true,
+      "turns": 6,
+      "tokens": 31201,
+      "time": 67.7
+    }
+  ],
+  "GPT-5.4-mini": [
+    {
+      "task": "refactor",
+      "success": true,
+      "turns": 10,
+      "tokens": 41001,
+      "time": 59.3
+    },
+    {
+      "task": "bugfix",
+      "success": true,
+      "turns": 8,
+      "tokens": 54769,
+      "time": 53.7
+    }
+  ],
+  "GPT-5.3-codex": [
+    {
+      "task": "refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 73380,
+      "time": 109.5
+    },
+    {
+      "task": "bugfix",
+      "success": true,
+      "turns": 7,
+      "tokens": 17731,
+      "time": 35.0
+    }
+  ]
+}

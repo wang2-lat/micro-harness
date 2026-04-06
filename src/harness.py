@@ -158,29 +158,38 @@ def tool_bash(command: str, timeout: int = 30) -> str:
 
 def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
     """Search for pattern in files using ripgrep.
-    Returns matching lines with line numbers or error if rg not installed."""
+    Returns matching lines with line numbers or clear errors.
+    Exit code semantics:
+      0 = matches found
+      1 = no matches (or all searched files ignored)
+      2 = grep/runtime error
+    """
     cmd = ["rg", "-n", pattern, path]
     if glob:
         cmd.extend(["-g", glob])
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
-        
-        # Check exit code
+
+        out = (result.stdout or "")
+        err = (result.stderr or "").strip()
+
         if result.returncode == 0:
-            # Success with matches
-            out = result.stdout[:4000] if result.stdout else ""
-            # Check if output is empty or contains only whitespace
-            return out if out and not out.isspace() else "(no matches)"
-        elif result.returncode == 1:
-            # No matches found
+            trimmed = out[:4000]
+            return trimmed if trimmed and not trimmed.isspace() else "(no matches)"
+
+        if result.returncode == 1:
+            # Distinguish true no-match from warnings/errors that still return 1.
+            # ripgrep can emit diagnostics to stderr with code 1 in some cases
+            # (e.g., unreadable files/dirs), which should not be silent.
+            if err:
+                return f"ERROR: {err}"
             return "(no matches)"
-        else:
-            # Error from ripgrep (exit code 2 or other)
-            if result.stderr and result.stderr.strip():
-                error_msg = result.stderr.strip()
-            else:
-                error_msg = f"ripgrep failed with exit code {result.returncode}"
-            return f"ERROR: {error_msg}"
+
+        # returncode >= 2 => hard error
+        if err:
+            return f"ERROR: {err}"
+        return f"ERROR: ripgrep failed with exit code {result.returncode}"
+
     except FileNotFoundError:
         return "ERROR: ripgrep (rg) not installed"
     except subprocess.TimeoutExpired:
