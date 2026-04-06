@@ -164,12 +164,25 @@ def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
         cmd.extend(["-g", glob])
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
-        out = result.stdout[:4000]
-        return out if out else "(no matches)"
+        
+        # Check exit code
+        if result.returncode == 0:
+            # Success with matches
+            out = result.stdout[:4000]
+            return out if out else "(no matches)"
+        elif result.returncode == 1:
+            # No matches found
+            return "(no matches)"
+        else:
+            # Error from ripgrep (exit code 2 or other)
+            error_msg = result.stderr.strip() if result.stderr else f"ripgrep failed with exit code {result.returncode}"
+            return f"ERROR: {error_msg}"
     except FileNotFoundError:
         return "ERROR: ripgrep (rg) not installed"
     except subprocess.TimeoutExpired:
         return "ERROR: grep timeout"
+    except Exception as e:
+        return f"ERROR: {e}"
 
 
 def tool_tree(path: str = ".", max_depth: int = 3) -> str:

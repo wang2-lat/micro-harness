@@ -52,19 +52,16 @@ class OpenAIHarness:
         # System prompt
         file_index = build_file_index(cwd or os.getcwd()) if c.use_file_index else None
         system_parts = [
-            "You are micro-harness, a minimal coding agent.",
+            "You are a coding agent. You have tools. Be efficient.",
             "",
-            "WORKFLOW (follow strictly):",
-            "1. PLAN: Before any tool call, think step-by-step what you need to do. Output your plan as text first.",
-            "2. ACT: Execute one step at a time. Use the read tool with start_line+limit to read only the relevant section, not the whole file.",
-            "3. VERIFY: After making changes, always verify they worked (re-read the changed section or run the code).",
-            "4. If an edit fails, re-read the exact text around the target area and try again with the corrected old_string.",
-            "",
-            "RULES:",
-            "- When reading large files, use start_line and limit to read only what you need. Do NOT read entire files over 100 lines.",
-            "- For edit: old_string must be an EXACT copy from the file. When in doubt, read the relevant lines first.",
-            "- Always verify your changes worked before declaring done.",
-            "- When finished, output a final message summarizing what you did.",
+            "CRITICAL RULES:",
+            "1. Use grep to find things. NEVER read an entire file to search for something.",
+            "2. Use read with start_line+limit (max 30 lines). NEVER read more than 30 lines at once.",
+            "3. Before editing, ALWAYS read the exact lines you want to change. Copy old_string exactly from the read output.",
+            "4. After writing code, ALWAYS run it immediately to check for errors.",
+            "5. If you need to write a new Python file that imports from this project, start with: import sys; sys.path.insert(0, 'src')",
+            "6. Work fast. Don't read files you don't need. Don't explain your thinking — just act.",
+            "7. When done, say what you did in 2-3 sentences.",
         ]
         if file_index:
             system_parts.append(f"\n=== Project Files ===\n{file_index}")

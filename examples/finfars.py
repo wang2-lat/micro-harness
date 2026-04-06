@@ -4,7 +4,7 @@ FinFars - Financial Research Auto-Generation System
 A vertical harness specialized for equity research.
 Demonstrates technique 9: domain-specific tools replacing generic ones.
 
-Generic Claude Code harness: 5 tools (read/write/edit/bash/grep)
+Generic Claude Code harness: 6 tools (read/write/edit/bash/grep/tree)
 FinFars harness: 8 domain tools (fetch_filing, fetch_prices, fetch_news, etc.)
 
 This is what a $10/month "AI equity analyst" product looks like.

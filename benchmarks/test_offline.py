@@ -166,7 +166,7 @@ def test_cache_boundary():
 
 def test_tools_schema_well_formed():
     """All tools have valid JSON schema."""
-    assert_eq(len(TOOLS_SCHEMA), 5, "5 tools defined")
+    assert_eq(len(TOOLS_SCHEMA), 6, "6 tools defined")
     for tool in TOOLS_SCHEMA:
         assert "name" in tool
         assert "description" in tool

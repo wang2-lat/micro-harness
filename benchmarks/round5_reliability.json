@@ -1,0 +1,122 @@
+{
+  "refactor": [
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 110715,
+      "time": 177.9
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 155688,
+      "time": 187.9
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 160967,
+      "time": 199.0
+    }
+  ],
+  "test-gen": [
+    {
+      "success": true,
+      "turns": 20,
+      "tokens": 128571,
+      "time": 219.7
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 160292,
+      "time": 239.8
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 187206,
+      "time": 190.3
+    }
+  ],
+  "analysis": [
+    {
+      "success": true,
+      "turns": 11,
+      "tokens": 96741,
+      "time": 96.0
+    },
+    {
+      "success": true,
+      "turns": 15,
+      "tokens": 179284,
+      "time": 207.8
+    },
+    {
+      "success": true,
+      "turns": 12,
+      "tokens": 112372,
+      "time": 171.7
+    }
+  ],
+  "feature": [
+    {
+      "success": true,
+      "turns": 13,
+      "tokens": 89403,
+      "time": 91.4
+    },
+    {
+      "success": true,
+      "turns": 15,
+      "tokens": 116783,
+      "time": 115.2
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 169039,
+      "time": 150.7
+    }
+  ],
+  "debug": [
+    {
+      "success": true,
+      "turns": 13,
+      "tokens": 57531,
+      "time": 151.6
+    },
+    {
+      "success": true,
+      "turns": 5,
+      "tokens": 16507,
+      "time": 88.4
+    },
+    {
+      "success": true,
+      "turns": 19,
+      "tokens": 130653,
+      "time": 266.1
+    }
+  ],
+  "bugfix": [
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 151300,
+      "time": 210.6
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 98017,
+      "time": 139.2
+    },
+    {
+      "success": false,
+      "turns": 20,
+      "tokens": 148271,
+      "time": 181.3
+    }
+  ]
+}

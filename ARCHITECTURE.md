@@ -17,6 +17,7 @@ Everything else is an optimization on this loop.
 - **Edit** - precise string replacement
 - **Bash** - sandboxed shell
 - **Grep** - AST-aware search (ripgrep wrapper)
+- **Tree** - directory listing (pure Python)
 
 Insight: dedicated tools have 3x higher success rate than shell equivalents.
 

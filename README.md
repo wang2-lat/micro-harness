@@ -13,7 +13,7 @@ But production harnesses are complex. Claude Code has 512K+ lines of TypeScript.
 | # | Technique | LOC | Impact |
 |---|-----------|-----|--------|
 | 1 | **Agent Loop** — ReAct cycle with tool calling | 40 | Foundation |
-| 2 | **Tool System** — 5 structured tools > shell | 60×5 | +3× success rate |
+| 2 | **Tool System** — 6 structured tools > shell | 60×6 | +3× success rate |
 | 3 | **Cache Boundary** — stable prefix + dynamic suffix | 20 | -87% token cost |
 | 4 | **Environment Bootstrap** — Meta-Harness's winning trick | 30 | -2 to -5 exploration turns |
 | 5 | **Three-Layer Memory** — lazy skill loading | 50 | -95% context size |
