@@ -86,6 +86,18 @@ TOOLS_SCHEMA = [
             "required": ["pattern"],
         },
     },
+    {
+        "name": "tree",
+        "description": "Show directory structure like the unix 'tree' command but implemented in pure Python (no subprocess).",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string", "default": ".", "description": "Directory path to show tree for"},
+                "max_depth": {"type": "integer", "default": 3, "description": "Maximum depth to traverse"},
+            },
+            "required": [],
+        },
+    },
 ]
 
 
@@ -150,12 +162,71 @@ def tool_grep(pattern: str, path: str = ".", glob: str | None = None) -> str:
         return "ERROR: grep timeout"
 
 
+def tool_tree(path: str = ".", max_depth: int = 3) -> str:
+    """Show directory structure like the unix 'tree' command in pure Python.
+    
+    Args:
+        path: Directory path to show tree for (default: current directory)
+        max_depth: Maximum depth to traverse (default: 3)
+    
+    Returns:
+        String representation of directory tree
+    """
+    from pathlib import Path
+    
+    p = Path(path).expanduser()
+    if not p.exists():
+        return f"ERROR: Path not found: {path}"
+    if not p.is_dir():
+        return f"ERROR: Not a directory: {path}"
+    
+    result_lines = []
+    
+    def build_tree(current_path: Path, prefix: str = "", depth: int = 0, is_last: bool = True):
+        if depth > max_depth:
+            return
+            
+        # Add current directory/file to output
+        if depth == 0:
+            # For root, show the path or just the directory name
+            display_name = str(current_path) if path == "." else current_path.name
+            result_lines.append(f"{display_name}/")
+        else:
+            connector = "└── " if is_last else "├── "
+            result_lines.append(f"{prefix}{connector}{current_path.name}")
+        
+        if current_path.is_dir():
+            # Get sorted list of entries, directories first
+            try:
+                entries = sorted(current_path.iterdir(), key=lambda x: (not x.is_dir(), x.name.lower()))
+            except PermissionError:
+                result_lines.append(f"{prefix}    [Permission denied]")
+                return
+                
+            # Update prefix for children
+            child_prefix = prefix + ("    " if is_last else "│   ")
+            
+            # Process each child
+            for i, child in enumerate(entries):
+                is_last_child = (i == len(entries) - 1)
+                if child.is_dir():
+                    build_tree(child, child_prefix, depth + 1, is_last_child)
+                else:
+                    if depth + 1 <= max_depth:
+                        connector = "└── " if is_last_child else "├── "
+                        result_lines.append(f"{child_prefix}{connector}{child.name}")
+    
+    build_tree(p)
+    return "\n".join(result_lines)
+
+
 TOOL_DISPATCH: dict[str, Callable] = {
     "read": tool_read,
     "write": tool_write,
     "edit": tool_edit,
     "bash": tool_bash,
     "grep": tool_grep,
+    "tree": tool_tree,
 }
 
 
@@ -316,6 +387,7 @@ class HarnessConfig:
     use_file_index: bool = True
     critic_mode: str = "off"  # off | allowlist
     verbose: bool = True
+    max_tool_output: int = 8000
 
 
 @dataclass
@@ -462,11 +534,14 @@ class MicroHarness:
                 try:
                     fn = TOOL_DISPATCH[tool_name]
                     result = fn(**tool_input)
-                    result_str = str(result)[:10000]
+                    result_str = str(result)[:self.config.max_tool_output]
                     self.log(f"  ← {result_str[:150]}")
+                    # Check if result starts with "ERROR:" to set is_error flag
+                    is_error = result_str.startswith("ERROR:")
                     tool_results.append({
                         "type": "tool_result", "tool_use_id": block.id,
                         "content": result_str,
+                        "is_error": is_error,
                     })
                 except Exception as e:
                     self.log(f"  ← ERROR: {e}")

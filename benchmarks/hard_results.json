@@ -1,0 +1,138 @@
+{
+  "baseline": [
+    {
+      "task": "multi-file-refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 120167,
+      "input": 117856,
+      "output": 2311,
+      "time": 109.6,
+      "tools": 15,
+      "expected_turns": 6
+    },
+    {
+      "task": "bug-hunt",
+      "success": false,
+      "turns": 15,
+      "tokens": 127277,
+      "input": 125352,
+      "output": 1925,
+      "time": 105.0,
+      "tools": 15,
+      "expected_turns": 5
+    },
+    {
+      "task": "test-generation",
+      "success": false,
+      "turns": 15,
+      "tokens": 132173,
+      "input": 127740,
+      "output": 4433,
+      "time": 165.0,
+      "tools": 15,
+      "expected_turns": 8
+    },
+    {
+      "task": "cross-file-analysis",
+      "success": true,
+      "turns": 10,
+      "tokens": 91952,
+      "input": 89096,
+      "output": 2856,
+      "time": 115.2,
+      "tools": 9,
+      "expected_turns": 8
+    },
+    {
+      "task": "feature-implementation",
+      "success": false,
+      "turns": 15,
+      "tokens": 127833,
+      "input": 125358,
+      "output": 2475,
+      "time": 113.0,
+      "tools": 15,
+      "expected_turns": 10
+    },
+    {
+      "task": "debug-and-fix",
+      "success": true,
+      "turns": 14,
+      "tokens": 35561,
+      "input": 33326,
+      "output": 2235,
+      "time": 91.6,
+      "tools": 13,
+      "expected_turns": 8
+    }
+  ],
+  "+all": [
+    {
+      "task": "multi-file-refactor",
+      "success": false,
+      "turns": 15,
+      "tokens": 156942,
+      "input": 155160,
+      "output": 1782,
+      "time": 98.3,
+      "tools": 15,
+      "expected_turns": 6
+    },
+    {
+      "task": "bug-hunt",
+      "success": false,
+      "turns": 15,
+      "tokens": 149854,
+      "input": 145647,
+      "output": 4207,
+      "time": 172.0,
+      "tools": 15,
+      "expected_turns": 5
+    },
+    {
+      "task": "test-generation",
+      "success": false,
+      "turns": 15,
+      "tokens": 168904,
+      "input": 163148,
+      "output": 5756,
+      "time": 229.3,
+      "tools": 15,
+      "expected_turns": 8
+    },
+    {
+      "task": "cross-file-analysis",
+      "success": true,
+      "turns": 10,
+      "tokens": 112761,
+      "input": 109525,
+      "output": 3236,
+      "time": 138.3,
+      "tools": 9,
+      "expected_turns": 8
+    },
+    {
+      "task": "feature-implementation",
+      "success": false,
+      "turns": 15,
+      "tokens": 157705,
+      "input": 155714,
+      "output": 1991,
+      "time": 108.6,
+      "tools": 15,
+      "expected_turns": 10
+    },
+    {
+      "task": "debug-and-fix",
+      "success": false,
+      "turns": 15,
+      "tokens": 69892,
+      "input": 66223,
+      "output": 3669,
+      "time": 145.4,
+      "tools": 15,
+      "expected_turns": 8
+    }
+  ]
+}

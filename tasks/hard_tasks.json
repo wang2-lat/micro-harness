@@ -1,0 +1,32 @@
+[
+  {
+    "id": "multi-file-refactor",
+    "prompt": "In src/harness.py, find the HarnessConfig class. Add a new field 'max_tool_output: int = 8000'. Then find everywhere that tool results are truncated ([:10000]) and change them to use this new config value. Report which lines you changed.",
+    "turns_expected": 6
+  },
+  {
+    "id": "bug-hunt",
+    "prompt": "There is a potential bug in src/harness.py: if the 'grep' tool is called but ripgrep is not installed, it returns an error string but the agent loop doesn't know it's an error (no is_error flag). Find this issue and fix it by wrapping the grep tool call result in an error check. Show the fix.",
+    "turns_expected": 5
+  },
+  {
+    "id": "test-generation",
+    "prompt": "Read src/harness.py and write a new test file at /tmp/test_critic.py that tests the critic_check function with 10 different commands (5 safe, 5 dangerous). Each test should assert the expected result. Then run the test file and report if all tests pass.",
+    "turns_expected": 8
+  },
+  {
+    "id": "cross-file-analysis",
+    "prompt": "Compare src/harness.py and src/openai_harness.py. List the key architectural differences between the Anthropic and OpenAI backends. Focus on: how tools are defined, how tool results are injected back, and how the agent loop terminates. Write a comparison report to /tmp/backend_comparison.md",
+    "turns_expected": 8
+  },
+  {
+    "id": "feature-implementation",
+    "prompt": "Add a new tool called 'tree' to src/harness.py that shows directory structure like the unix 'tree' command but implemented in pure Python (no subprocess). It should accept 'path' and 'max_depth' parameters. Add it to both TOOLS_SCHEMA and TOOL_DISPATCH. Then test it by calling it on the current directory.",
+    "turns_expected": 10
+  },
+  {
+    "id": "debug-and-fix",
+    "prompt": "Create a Python script at /tmp/buggy.py with this code: a function that takes a list of numbers and returns the average, but it has a division by zero bug when the list is empty. Then use the harness tools to read the file, identify the bug, fix it, and run a test to verify the fix works.",
+    "turns_expected": 8
+  }
+]

@@ -86,6 +86,18 @@ GEMINI_TOOLS = types.Tool(function_declarations=[
             required=["pattern"],
         ),
     ),
+    types.FunctionDeclaration(
+        name="tree",
+        description="Show directory structure like the unix 'tree' command but implemented in pure Python (no subprocess).",
+        parameters=types.Schema(
+            type="OBJECT",
+            properties={
+                "path": types.Schema(type="STRING"),
+                "max_depth": types.Schema(type="INTEGER"),
+            },
+            required=[],
+        ),
+    ),
 ])
 
 
@@ -209,7 +221,7 @@ class GeminiHarness:
                 try:
                     fn = TOOL_DISPATCH[tool_name]
                     result = fn(**tool_args)
-                    result_str = str(result)[:10000]
+                    result_str = str(result)[:self.config.max_tool_output]
                     self.log(f"  ← {result_str[:150]}")
                     fn_response_parts.append(types.Part.from_function_response(
                         name=tool_name, response={"result": result_str}

@@ -141,7 +141,7 @@ class OpenAIHarness:
                 try:
                     fn = TOOL_DISPATCH[fn_name]
                     result = fn(**fn_args)
-                    result_str = str(result)[:10000]
+                    result_str = str(result)[:self.config.max_tool_output]
                     self.log(f"  ← {result_str[:150]}")
                     messages.append({
                         "role": "tool", "tool_call_id": tc.id,
