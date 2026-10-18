@@ -108,6 +108,12 @@ pip install anthropic openai google-genai
 # 离线测试（不需要API key）
 python3 benchmarks/test_offline.py
 
+# 或安装 `mh` 命令
+pip install -e ".[anthropic]"
+mh --help
+mh route "Write tests for the critic_check function"   # 离线模型路由
+ANTHROPIC_API_KEY=your-key mh run "your task here"     # Claude 后端
+
 # 用DeepSeek（通过任何OpenAI兼容API）：
 OPENAI_API_KEY=你的key OPENAI_BASE_URL=https://api.xxx.com/v1 \
 MODEL=DeepSeek-V3.2 python3 src/openai_harness.py "你的任务"

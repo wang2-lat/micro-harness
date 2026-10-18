@@ -1,6 +1,6 @@
 """
 Offline unit tests — validate harness components without API calls.
-Run: python3 test_offline.py
+Run: python3 benchmarks/test_offline.py   (or: pytest benchmarks/)
 """
 import sys
 import os
@@ -138,7 +138,10 @@ def test_bootstrap():
 
 def test_file_index():
     """File index lists repo files, ignoring .git/node_modules."""
-    idx = build_file_index(".", max_files=100)
+    # Index the repo root explicitly so the result doesn't depend on the
+    # directory the tests are launched from (repo root vs. benchmarks/).
+    repo_root = Path(__file__).resolve().parent.parent
+    idx = build_file_index(str(repo_root), max_files=100)
     assert_contains(idx, "harness.py", "index has source files")
     assert_not_contains(idx, ".git/", "index ignores .git")
     assert_not_contains(idx, "node_modules/", "index ignores node_modules")
