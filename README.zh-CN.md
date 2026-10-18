@@ -4,9 +4,7 @@
 
 [English](README.md) | 简体中文
 
-Claude Code源码泄漏（2026年3月31日）之后，我们了解到**包裹LLM的"外壳"（harness）比模型本身更重要**。斯坦福的Meta-Harness实验表明，同一个模型搭配不同harness，性能差距可达6倍。
-
-但生产级harness太复杂了。Claude Code有51万行TypeScript。这个项目只有约400行Python。
+生产级harness太复杂了。Claude Code有51万行TypeScript。这个项目只有约400行Python。
 
 ## 7模型终极对决（标题数据）
 
