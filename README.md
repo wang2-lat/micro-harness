@@ -108,6 +108,12 @@ pip install anthropic openai google-genai
 # Offline tests (no API key needed)
 python3 benchmarks/test_offline.py
 
+# Or install the `mh` command
+pip install -e ".[anthropic]"
+mh --help
+mh route "Write tests for the critic_check function"   # offline model router
+ANTHROPIC_API_KEY=your-key mh run "your task here"     # Claude backend
+
 # With DeepSeek via any OpenAI-compatible API:
 OPENAI_API_KEY=your-key OPENAI_BASE_URL=https://api.example.com/v1 \
 MODEL=DeepSeek-V3.2 python3 src/openai_harness.py "your task here"
