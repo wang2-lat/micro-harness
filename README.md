@@ -4,8 +4,6 @@ English | [简体中文](README.zh-CN.md)
 
 **A minimal agent harness you can read in 30 minutes — and the honest story of taking it from 17% to 50% pass rate on hard coding tasks.**
 
-After the Claude Code source leak (March 31, 2026), we learned that **the harness around an LLM matters more than the model**. Stanford showed a 6× gap on the same model with different harnesses. But production harnesses are 512K+ lines. This one is ~400.
-
 ## 7-Model Battle (the headline result)
 
 We ran the same 2 hardest coding tasks through 7 frontier models on the same harness. No prompt tuning per model — identical system prompt, identical tools.
